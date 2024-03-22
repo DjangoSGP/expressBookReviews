@@ -46,12 +46,12 @@ regd_users.put("/auth/review/:isbn", (req, res) => {
     const isbn = req.params.isbn;
     let book = books[isbn]
     if (book) { //Check if book exists
-        let review = req.body.review;
-        if(review) {
-            book["review"] = review
+        
+        book["reviews"] = {
+            "name":req.body.name,
+            "content":req.body.content
         }
-        books[isbn]=book;
-        res.send(`book with the isbn  ${isbn} updated.`);
+        res.send("Comment created")
     }
     else{
         res.send("Unable to find book!");
