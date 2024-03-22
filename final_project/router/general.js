@@ -43,15 +43,24 @@ public_users.get('/isbn/:isbn',function (req, res) {
   
 // Get book details based on author
 public_users.get('/author/:author',function (req, res) {
-    const name= req.params.author.replace("-"," ");
-    const author = books[1]["author"];
-    res.send(author)
+    const name= req.params.author.replaceAll("-"," ");
+    for (const key in books){
+    const author = books[key]["author"];
+    if (name == author){
+        res.send(books[key])
+    }
+    }
 });
 
 // Get all books based on title
 public_users.get('/title/:title',function (req, res) {
-  //Write your code here
-  return res.status(300).json({message: "Yet to be implemented"});
+    const name= req.params.title.replaceAll("-"," ");
+    for (const key in books){
+    const title = books[key]["title"];
+    if (name == title){
+        res.send(books[key])
+    }
+    }
 });
 
 //  Get book review
