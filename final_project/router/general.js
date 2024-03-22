@@ -43,9 +43,9 @@ public_users.get('/isbn/:isbn',function (req, res) {
   
 // Get book details based on author
 public_users.get('/author/:author',function (req, res) {
-    const author= req.params.author.replace("-"," ");
-    const filter = Object.values(books)
-    res.send(filter)
+    const name= req.params.author.replace("-"," ");
+    const author = books[1]["author"];
+    res.send(author)
 });
 
 // Get all books based on title

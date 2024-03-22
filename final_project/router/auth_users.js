@@ -48,7 +48,7 @@ regd_users.put("/auth/review/:isbn", (req, res) => {
     if (book) { //Check if book exists
         
         book["reviews"] = {
-            "name":req.body.name,
+            "name":users[0]["username"],
             "content":req.body.content
         }
         res.send("Comment created")
@@ -56,6 +56,19 @@ regd_users.put("/auth/review/:isbn", (req, res) => {
     else{
         res.send("Unable to find book!");
     }
+});
+
+regd_users.delete("/auth/review/:isbn", (req, res) => {
+    const isbn = req.params.isbn;
+    let book = books[isbn]
+    if (book) { //Check if book exists
+        book["reviews"] = {}
+        res.send("Comment dleted")
+    }
+    else{
+        res.send("Unable to find book!");
+    }
+
 });
 
 module.exports.authenticated = regd_users;
